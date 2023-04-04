@@ -72,13 +72,22 @@ add_library(${PROJECT_NAME}
     ## legacy protocol v1 support (transparent to user)
     src/protocol_v1/agilex_msg_parser_v1.c
 )
-ament_target_dependencies(${PROJECT_NAME} PUBLIC Threads::Threads)
+ament_target_dependencies(${PROJECT_NAME})
+# ament_target_dependencies(${PROJECT_NAME} PUBLIC Threads::Threads)
 target_compile_definitions(${PROJECT_NAME} PUBLIC ASIO_ENABLE_OLD_SERVICES)
 target_include_directories(${PROJECT_NAME} PUBLIC
 	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include/ugv_sdk/details/asio/include>
     $<INSTALL_INTERFACE:include>
     PRIVATE src)
+install(TARGETS ${PROJECT_NAME}
+        ARCHIVE DESTINATION lib
+        LIBRARY DESTINATION lib
+        RUNTIME DESTINATION bin
+)
+install(DIRECTORY include/
+        DESTINATION include
+)
 
 # Build demo
 if(BUILD_WITHOUT_ROS)
@@ -95,14 +104,3 @@ endif()
 ament_export_include_directories(include)
 ament_export_libraries(${PROJECT_NAME})
 ament_package()
-
-    ## Add catkin install targets
-    install(TARGETS ${PROJECT_NAME}
-      RUNTIME DESTINATION lib/${PROJECT_NAME}
-      LIBRARY DESTINATION lib
-      ARCHIVE DESTINATION lib
-)
-
-    install(DIRECTORY include/${PROJECT_NAME}
-      DESTINATION include
-)
