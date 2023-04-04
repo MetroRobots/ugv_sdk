@@ -15,6 +15,7 @@
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>async_port</build_depend>
+  <build_depend>asio</build_depend>
   <run_depend>async_port</run_depend>
   <export></export>
 </package>
