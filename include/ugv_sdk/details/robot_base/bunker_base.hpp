@@ -18,26 +18,30 @@
 #include "ugv_sdk/details/interface/bunker_interface.hpp"
 #include "ugv_sdk/details/robot_base/agilex_base.hpp"
 
-namespace westonrobot {
+namespace westonrobot
+{
 template <typename ParserType>
-class BunkerBase : public AgilexBase<ParserType>, public BunkerInterface {
- public:
+class BunkerBase : public AgilexBase<ParserType>, public BunkerInterface
+{
+public:
   BunkerBase() : AgilexBase<ParserType>(){};
   ~BunkerBase() = default;
 
   // set up connection
-  void Connect(std::string can_name) override {
+  void Connect(std::string can_name) override
+  {
     AgilexBase<ParserType>::Connect(can_name);
   }
 
   // robot control
-  void SetMotionCommand(double linear_vel, double angular_vel) override {
-    AgilexBase<ParserType>::SendMotionCommand(linear_vel, angular_vel, 0.0,
-                                              0.0);
+  void SetMotionCommand(double linear_vel, double angular_vel) override
+  {
+    AgilexBase<ParserType>::SendMotionCommand(linear_vel, angular_vel, 0.0, 0.0);
   }
 
   // get robot state
-  BunkerCoreState GetRobotState() override {
+  BunkerCoreState GetRobotState() override
+  {
     auto state = AgilexBase<ParserType>::GetRobotCoreStateMsgGroup();
 
     BunkerCoreState bunker_state;
@@ -48,12 +52,14 @@ class BunkerBase : public AgilexBase<ParserType>, public BunkerInterface {
     return bunker_state;
   }
 
-  BunkerActuatorState GetActuatorState() override {
+  BunkerActuatorState GetActuatorState() override
+  {
     auto actuator = AgilexBase<ParserType>::GetActuatorStateMsgGroup();
 
     BunkerActuatorState bunker_actuator;
     bunker_actuator.time_stamp = actuator.time_stamp;
-    for (int i = 0; i < 2; ++i) {
+    for (int i = 0; i < 2; ++i)
+    {
       bunker_actuator.actuator_hs_state[i] = actuator.actuator_hs_state[i];
       bunker_actuator.actuator_ls_state[i] = actuator.actuator_ls_state[i];
       bunker_actuator.actuator_state[i] = actuator.actuator_state[i];
@@ -66,7 +72,8 @@ class BunkerBase : public AgilexBase<ParserType>, public BunkerInterface {
 #include "ugv_sdk/details/protocol_v1/protocol_v1_parser.hpp"
 #include "ugv_sdk/details/protocol_v2/protocol_v2_parser.hpp"
 
-namespace westonrobot {
+namespace westonrobot
+{
 using BunkerBaseV1 = BunkerBase<BunkerProtocolV1Parser>;
 using BunkerBaseV2 = BunkerBase<ProtocolV2Parser>;
 }  // namespace westonrobot

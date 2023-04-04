@@ -15,9 +15,11 @@
 #include "ugv_sdk/details/interface/robot_common_interface.hpp"
 #include "ugv_sdk/details/interface/bunker_interface.hpp"
 
-namespace westonrobot {
-class BunkerRobot : public RobotCommonInterface, public BunkerInterface {
- public:
+namespace westonrobot
+{
+class BunkerRobot : public RobotCommonInterface, public BunkerInterface
+{
+public:
   BunkerRobot(ProtocolVersion protocol = ProtocolVersion::AGX_V2);
   ~BunkerRobot();
 
@@ -35,7 +37,7 @@ class BunkerRobot : public RobotCommonInterface, public BunkerInterface {
   BunkerCoreState GetRobotState() override;
   BunkerActuatorState GetActuatorState() override;
 
- private:
+private:
   RobotCommonInterface* robot_;
 };
 }  // namespace westonrobot

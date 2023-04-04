@@ -15,8 +15,10 @@
 #include "ugv_sdk/details/interface/agilex_message.h"
 #include "ugv_sdk/details/interface/robot_common_interface.hpp"
 
-namespace westonrobot {
-struct ScoutCoreState {
+namespace westonrobot
+{
+struct ScoutCoreState
+{
   AgxMsgTimeStamp time_stamp;
 
   SystemStateMessage system_state;
@@ -25,7 +27,8 @@ struct ScoutCoreState {
   RcStateMessage rc_state;
 };
 
-struct ScoutActuatorState {
+struct ScoutActuatorState
+{
   AgxMsgTimeStamp time_stamp;
 
   // actuator state
@@ -36,13 +39,15 @@ struct ScoutActuatorState {
   ActuatorStateMessageV1 actuator_state[4];
 };
 
-struct ScoutCommonSensorState {
+struct ScoutCommonSensorState
+{
   AgxMsgTimeStamp time_stamp;
 
   BmsBasicMessage bms_basic_state;
 };
 
-struct ScoutInterface {
+struct ScoutInterface
+{
   virtual ~ScoutInterface() = default;
 
   virtual void Connect(std::string uart_name, uint32_t baudrate){
@@ -50,8 +55,7 @@ struct ScoutInterface {
   };
 
   virtual void SetMotionCommand(double linear_vel, double angular_vel) = 0;
-  virtual void SetLightCommand(LightMode f_mode, uint8_t f_value,
-                               LightMode r_mode, uint8_t r_value) = 0;
+  virtual void SetLightCommand(LightMode f_mode, uint8_t f_value, LightMode r_mode, uint8_t r_value) = 0;
 
   // get robot state
   virtual ScoutCoreState GetRobotState() = 0;
@@ -59,11 +63,11 @@ struct ScoutInterface {
   virtual ScoutCommonSensorState GetCommonSensorState() = 0;
 };
 
-struct ScoutOmniInterface {
+struct ScoutOmniInterface
+{
   virtual ~ScoutOmniInterface() = default;
 
-  virtual void SetMotionCommand(double linear_vel, double angular_vel,
-                                double lateral_velocity) = 0;
+  virtual void SetMotionCommand(double linear_vel, double angular_vel, double lateral_velocity) = 0;
 };
 }  // namespace westonrobot
 

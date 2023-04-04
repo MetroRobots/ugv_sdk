@@ -22,21 +22,25 @@
 
 #include "ugv_sdk/details/async_port/async_port_base.hpp"
 
-namespace westonrobot {
-class AsyncCAN : public AsyncPortBase,
-                 public std::enable_shared_from_this<AsyncCAN> {
- public:
-  using ReceiveCallback = std::function<void(can_frame *rx_frame)>;
+namespace westonrobot
+{
+class AsyncCAN : public AsyncPortBase, public std::enable_shared_from_this<AsyncCAN>
+{
+public:
+  using ReceiveCallback = std::function<void(can_frame* rx_frame)>;
 
- public:
+public:
   AsyncCAN(std::string can_port = "can0");
 
   void StopService() override;
 
-  void SetReceiveCallback(ReceiveCallback cb) { rcv_cb_ = cb; }
-  void SendFrame(const struct can_frame &frame);
+  void SetReceiveCallback(ReceiveCallback cb)
+  {
+    rcv_cb_ = cb;
+  }
+  void SendFrame(const struct can_frame& frame);
 
- private:
+private:
   int can_fd_;
   asio::posix::basic_stream_descriptor<> socketcan_stream_;
 
@@ -44,9 +48,8 @@ class AsyncCAN : public AsyncPortBase,
   ReceiveCallback rcv_cb_ = nullptr;
 
   bool SetupPort();
-  void DefaultReceiveCallback(can_frame *rx_frame);
-  void ReadFromPort(struct can_frame &rec_frame,
-                    asio::posix::basic_stream_descriptor<> &stream);
+  void DefaultReceiveCallback(can_frame* rx_frame);
+  void ReadFromPort(struct can_frame& rec_frame, asio::posix::basic_stream_descriptor<>& stream);
 };
 }  // namespace westonrobot
 

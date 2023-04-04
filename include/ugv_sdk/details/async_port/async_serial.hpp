@@ -18,32 +18,40 @@
 #include "ugv_sdk/details/async_port/async_port_base.hpp"
 #include "ugv_sdk/details/async_port/ring_buffer.hpp"
 
-namespace westonrobot {
-class AsyncSerial : public AsyncPortBase,
-                    public std::enable_shared_from_this<AsyncSerial> {
- public:
-  using ReceiveCallback =
-      std::function<void(uint8_t *data, const size_t bufsize, size_t len)>;
+namespace westonrobot
+{
+class AsyncSerial : public AsyncPortBase, public std::enable_shared_from_this<AsyncSerial>
+{
+public:
+  using ReceiveCallback = std::function<void(uint8_t* data, const size_t bufsize, size_t len)>;
 
- public:
+public:
   AsyncSerial(std::string port_name, uint32_t baud_rate = 115200);
 
   void StopService() override;
 
-  bool IsOpened() const override { return serial_port_.is_open(); }
+  bool IsOpened() const override
+  {
+    return serial_port_.is_open();
+  }
 
-  void SetReceiveCallback(ReceiveCallback cb) { rcv_cb_ = cb; }
-  void SendBytes(const uint8_t *bytes, size_t length);
+  void SetReceiveCallback(ReceiveCallback cb)
+  {
+    rcv_cb_ = cb;
+  }
+  void SendBytes(const uint8_t* bytes, size_t length);
 
   void SetBaudRate(unsigned baudrate);
-  void SetHardwareFlowControl(bool enabled) { hwflow_ = enabled; }
+  void SetHardwareFlowControl(bool enabled)
+  {
+    hwflow_ = enabled;
+  }
 
- private:
+private:
   asio::serial_port serial_port_;
   uint32_t baud_rate_ = 115200;
   bool hwflow_ = false;
   ReceiveCallback rcv_cb_ = nullptr;
-
 
   // tx/rx buffering
   static constexpr uint32_t rxtx_buffer_size = 1024 * 8;
@@ -56,7 +64,7 @@ class AsyncSerial : public AsyncPortBase,
   bool tx_in_progress_ = false;
 
   bool SetupPort();
-  void DefaultReceiveCallback(uint8_t *data, const size_t bufsize, size_t len);
+  void DefaultReceiveCallback(uint8_t* data, const size_t bufsize, size_t len);
   void ReadFromPort();
   void WriteToPort(bool check_if_busy);
 };

@@ -16,17 +16,18 @@
 
 using namespace westonrobot;
 
-int main(int argc, char **argv) {
+int main(int argc, char** argv)
+{
   std::string device_name;
 
-  if (argc == 2) {
+  if (argc == 2)
+  {
     device_name = {argv[1]};
-    std::cout << "Using interface "
-              << device_name << std::endl;
-  } else {
-    std::cout << "Usage: app_tracer_demo <interface>"
-              << std::endl
-              << "Example 1: ./app_tracer_demo can0" << std::endl;
+    std::cout << "Using interface " << device_name << std::endl;
+  }
+  else
+  {
+    std::cout << "Usage: app_tracer_demo <interface>" << std::endl << "Example 1: ./app_tracer_demo can0" << std::endl;
     return -1;
   }
 
@@ -56,7 +57,8 @@ int main(int argc, char **argv) {
   tracer->SetLightCommand(CONST_OFF, 0);
 
   int count = 0;
-  while (true) {
+  while (true)
+  {
     // motion control
     std::cout << "Motor: 1.0, 0" << std::endl;
     tracer->SetMotionCommand(1.0, 0.0);
@@ -65,18 +67,15 @@ int main(int argc, char **argv) {
     auto state = tracer->GetRobotState();
     std::cout << "-------------------------------" << std::endl;
     std::cout << "count: " << count << std::endl;
-    std::cout << "control mode: "
-              << static_cast<int>(state.system_state.control_mode)
-              << " , vehicle state: "
-              << static_cast<int>(state.system_state.vehicle_state)
+    std::cout << "control mode: " << static_cast<int>(state.system_state.control_mode)
+              << " , vehicle state: " << static_cast<int>(state.system_state.vehicle_state)
               << " , error code: " << std::hex << state.system_state.error_code
-              << ", battery voltage: " << state.system_state.battery_voltage
-              << std::endl;
-    std::cout << "velocity (linear, angular): "
-              << state.motion_state.linear_velocity << ", "
+              << ", battery voltage: " << state.system_state.battery_voltage << std::endl;
+    std::cout << "velocity (linear, angular): " << state.motion_state.linear_velocity << ", "
               << state.motion_state.angular_velocity << std::endl;
 
-    for (int i = 0; i < 2; ++i) {
+    for (int i = 0; i < 2; ++i)
+    {
     }
     std::cout << "-------------------------------" << std::endl;
 

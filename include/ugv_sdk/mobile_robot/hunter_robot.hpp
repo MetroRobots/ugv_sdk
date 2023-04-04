@@ -15,9 +15,11 @@
 #include "ugv_sdk/details/interface/robot_common_interface.hpp"
 #include "ugv_sdk/details/interface/hunter_interface.hpp"
 
-namespace westonrobot {
-class HunterRobot : public RobotCommonInterface, public HunterInterface {
- public:
+namespace westonrobot
+{
+class HunterRobot : public RobotCommonInterface, public HunterInterface
+{
+public:
   HunterRobot(ProtocolVersion protocol = ProtocolVersion::AGX_V2);
   ~HunterRobot();
 
@@ -38,7 +40,7 @@ class HunterRobot : public RobotCommonInterface, public HunterInterface {
   HunterCoreState GetRobotState() override;
   HunterActuatorState GetActuatorState() override;
 
- private:
+private:
   RobotCommonInterface* robot_;
 };
 }  // namespace westonrobot

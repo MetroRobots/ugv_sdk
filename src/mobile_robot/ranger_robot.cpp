@@ -9,6 +9,7 @@
 #include "ugv_sdk/mobile_robot/ranger_robot.hpp"
 #include "ugv_sdk/details/robot_base/ranger_base.hpp"
 
-namespace westonrobot {
+namespace westonrobot
+{
 
 }

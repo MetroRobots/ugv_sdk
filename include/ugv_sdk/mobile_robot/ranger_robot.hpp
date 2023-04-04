@@ -12,7 +12,8 @@
 
 #include "ugv_sdk/details/robot_base/ranger_base.hpp"
 
-namespace westonrobot {
+namespace westonrobot
+{
 using RangerRobot = RangerBaseV2;
 }  // namespace westonrobot
 

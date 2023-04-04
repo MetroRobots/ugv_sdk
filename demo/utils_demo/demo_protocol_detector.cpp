@@ -14,19 +14,28 @@
 
 using namespace westonrobot;
 
-int main(int argc, char **argv) {
+int main(int argc, char** argv)
+{
   ProtocolDectctor detector;
-  if (detector.Connect("can0")) {
+  if (detector.Connect("can0"))
+  {
     auto proto = detector.DetectProtocolVersion(5);
 
-    if (proto == ProtocolVersion::AGX_V1) {
+    if (proto == ProtocolVersion::AGX_V1)
+    {
       std::cout << "Detected protocol: AGX_V1" << std::endl;
-    } else if (proto == ProtocolVersion::AGX_V2) {
+    }
+    else if (proto == ProtocolVersion::AGX_V2)
+    {
       std::cout << "Detected protocol: AGX_V2" << std::endl;
-    } else {
+    }
+    else
+    {
       std::cout << "Detected protocol: UNKNOWN" << std::endl;
     }
-  } else {
+  }
+  else
+  {
     std::cout << "Failed to open port" << std::endl;
     return -1;
   }

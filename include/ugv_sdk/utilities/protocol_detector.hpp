@@ -15,16 +15,18 @@
 #include "ugv_sdk/details/async_port/async_can.hpp"
 #include "ugv_sdk/details/interface/parser_interface.hpp"
 
-namespace westonrobot {
-class ProtocolDectctor {
- public:
+namespace westonrobot
+{
+class ProtocolDectctor
+{
+public:
   bool Connect(std::string can_name);
 
   ProtocolVersion DetectProtocolVersion(uint32_t timeout_sec);
 
- private:
+private:
   std::shared_ptr<AsyncCAN> can_;
-  void ParseCANFrame(can_frame *rx_frame);
+  void ParseCANFrame(can_frame* rx_frame);
 
   std::atomic<bool> msg_v1_detected_;
   std::atomic<bool> msg_v2_detected_;

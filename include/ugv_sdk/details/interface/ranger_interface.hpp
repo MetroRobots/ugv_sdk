@@ -15,8 +15,10 @@
 #include "ugv_sdk/details/interface/agilex_message.h"
 #include "ugv_sdk/details/interface/robot_common_interface.hpp"
 
-namespace westonrobot {
-struct RangerCoreState {
+namespace westonrobot
+{
+struct RangerCoreState
+{
   // system state
   AgxMsgTimeStamp time_stamp;
 
@@ -29,34 +31,36 @@ struct RangerCoreState {
   OdometryMessage odometry;
 };
 
-struct RangerActuatorState {
+struct RangerActuatorState
+{
   AgxMsgTimeStamp time_stamp;
 
   ActuatorHSStateMessage actuator_hs_state[8];
   ActuatorLSStateMessage actuator_ls_state[8];
 };
 
-struct RangerMotorState {
+struct RangerMotorState
+{
   MotorAngleMessage motor_angle_state;
   MotorSpeedMessage motor_speed_state;
 };
 
-struct RangerBmsState {
+struct RangerBmsState
+{
   BmsBasicMessage bmsbasic;
 };
 
 /////////////////////////////////////////////////////////////////////////
 
-struct RangerInterface {
+struct RangerInterface
+{
   virtual ~RangerInterface() = default;
   virtual void Connect(std::string dev_name, uint32_t baudrate){};
 
   // robot control
   virtual void SetMotionMode(uint8_t mode) = 0;
-  virtual void SetMotionCommand(double linear_vel, double steer_angle,
-                                double lateral_vel, double angular_vel) = 0;
-  virtual void SetLightCommand(LightMode f_mode, uint8_t f_value,
-                               LightMode r_mode, uint8_t r_value) = 0;
+  virtual void SetMotionCommand(double linear_vel, double steer_angle, double lateral_vel, double angular_vel) = 0;
+  virtual void SetLightCommand(LightMode f_mode, uint8_t f_value, LightMode r_mode, uint8_t r_value) = 0;
 
   // get robot state
   virtual RangerCoreState GetRobotState() = 0;

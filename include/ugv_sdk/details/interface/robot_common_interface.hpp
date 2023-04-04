@@ -18,11 +18,13 @@
 
 #define AGX_MAX_ACTUATOR_NUM 8
 
-namespace westonrobot {
+namespace westonrobot
+{
 using AgxMsgRefClock = std::chrono::steady_clock;
 using AgxMsgTimeStamp = std::chrono::time_point<AgxMsgRefClock>;
 
-struct CoreStateMsgGroup {
+struct CoreStateMsgGroup
+{
   AgxMsgTimeStamp time_stamp;
 
   SystemStateMessage system_state;
@@ -32,7 +34,8 @@ struct CoreStateMsgGroup {
   RcStateMessage rc_state;
 };
 
-struct ActuatorStateMsgGroup {
+struct ActuatorStateMsgGroup
+{
   AgxMsgTimeStamp time_stamp;
 
   ActuatorHSStateMessage actuator_hs_state[AGX_MAX_ACTUATOR_NUM];  // v2 only
@@ -40,25 +43,28 @@ struct ActuatorStateMsgGroup {
   ActuatorStateMessageV1 actuator_state[AGX_MAX_ACTUATOR_NUM];     // v1 only
 };
 
-struct CommonSensorStateMsgGroup {
+struct CommonSensorStateMsgGroup
+{
   AgxMsgTimeStamp time_stamp;
 
   BmsBasicMessage bms_basic_state;
 };
 
-struct ResponseVersionMsgGroup {
+struct ResponseVersionMsgGroup
+{
   std::string str_version_response;
   VersionResponseMessage version_response;
 };
 
-struct MotorMsgGroup {
+struct MotorMsgGroup
+{
   MotorAngleMessage MoterAngle;
   MotorSpeedMessage MoterSpeed;
 };
 
-
-class RobotCommonInterface {
- public:
+class RobotCommonInterface
+{
+public:
   ~RobotCommonInterface() = default;
 
   // functions to be implemented by class AgilexBase
@@ -71,65 +77,62 @@ class RobotCommonInterface {
 
   virtual void ResetRobotState() = 0;
 
-  virtual void DisableLightControl() {
+  virtual void DisableLightControl()
+  {
     // do nothing if no light on robot
   }
 
   virtual ProtocolVersion GetParserProtocolVersion() = 0;
 
- protected:
+protected:
   /****** functions not available/valid to all robots ******/
   // functions to be implemented by class AgilexBase
   virtual void SetMotionMode(uint8_t mode){};
   virtual void SetBrakedMode(BrakeMode mode){};
 
-  virtual CoreStateMsgGroup GetRobotCoreStateMsgGroup() {
-    throw std::runtime_error(
-        "Only a derived version of this function with actual implementation "
-        "is supposed to be used.");
+  virtual CoreStateMsgGroup GetRobotCoreStateMsgGroup()
+  {
+    throw std::runtime_error("Only a derived version of this function with actual implementation "
+                             "is supposed to be used.");
     return CoreStateMsgGroup{};
   };
-  virtual ActuatorStateMsgGroup GetActuatorStateMsgGroup() {
-    throw std::runtime_error(
-        "Only a derived version of this function with actual implementation "
-        "is supposed to be used.");
+  virtual ActuatorStateMsgGroup GetActuatorStateMsgGroup()
+  {
+    throw std::runtime_error("Only a derived version of this function with actual implementation "
+                             "is supposed to be used.");
     return ActuatorStateMsgGroup{};
   };
-  virtual CommonSensorStateMsgGroup GetCommonSensorStateMsgGroup() {
-    throw std::runtime_error(
-        "Only a derived version of this function with actual implementation "
-        "is supposed to be used.");
+  virtual CommonSensorStateMsgGroup GetCommonSensorStateMsgGroup()
+  {
+    throw std::runtime_error("Only a derived version of this function with actual implementation "
+                             "is supposed to be used.");
     return CommonSensorStateMsgGroup{};
   };
-  virtual ResponseVersionMsgGroup GetResponseVersionMsgGroup() {
-    throw std::runtime_error(
-        "Only a derived version of this function with actual implementation "
-        "is supposed to be used.");
+  virtual ResponseVersionMsgGroup GetResponseVersionMsgGroup()
+  {
+    throw std::runtime_error("Only a derived version of this function with actual implementation "
+                             "is supposed to be used.");
     return ResponseVersionMsgGroup{};
   };
-  virtual MotorMsgGroup GetMotorMsgGroup() {
-    throw std::runtime_error(
-        "Only a derived version of this function with actual implementation "
-        "is supposed to be used.");
+  virtual MotorMsgGroup GetMotorMsgGroup()
+  {
+    throw std::runtime_error("Only a derived version of this function with actual implementation "
+                             "is supposed to be used.");
     return MotorMsgGroup{};
   };
 
-
   // any specific robot will use a specialized version of the two functions
-  virtual void SendMotionCommand(double linear_vel, double angular_vel,
-                                 double lateral_velocity,
-                                 double steering_angle) {
-    throw std::runtime_error(
-        "Only a derived version of this function with actual implementation "
-        "is supposed to be used.");
+  virtual void SendMotionCommand(double linear_vel, double angular_vel, double lateral_velocity, double steering_angle)
+  {
+    throw std::runtime_error("Only a derived version of this function with actual implementation "
+                             "is supposed to be used.");
   };
 
-  virtual void SendLightCommand(LightMode front_mode,
-                                uint8_t front_custom_value, LightMode rear_mode,
-                                uint8_t rear_custom_value) {
-    throw std::runtime_error(
-        "Only a derived version of this function with actual implementation "
-        "is supposed to be used.");
+  virtual void SendLightCommand(LightMode front_mode, uint8_t front_custom_value, LightMode rear_mode,
+                                uint8_t rear_custom_value)
+  {
+    throw std::runtime_error("Only a derived version of this function with actual implementation "
+                             "is supposed to be used.");
   };
 };
 }  // namespace westonrobot

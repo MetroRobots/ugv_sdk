@@ -12,7 +12,8 @@
 
 #include "ugv_sdk/details/robot_base/tracer_base.hpp"
 
-namespace westonrobot {
+namespace westonrobot
+{
 using TracerRobot = TracerBaseV2;
 }  // namespace westonrobot
 

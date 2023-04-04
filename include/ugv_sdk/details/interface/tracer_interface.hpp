@@ -15,8 +15,10 @@
 #include "ugv_sdk/details/interface/agilex_message.h"
 #include "ugv_sdk/details/interface/robot_common_interface.hpp"
 
-namespace westonrobot {
-struct TracerCoreState {
+namespace westonrobot
+{
+struct TracerCoreState
+{
   AgxMsgTimeStamp time_stamp;
 
   SystemStateMessage system_state;
@@ -25,7 +27,8 @@ struct TracerCoreState {
   RcStateMessage rc_state;
 };
 
-struct TracerActuatorState {
+struct TracerActuatorState
+{
   AgxMsgTimeStamp time_stamp;
 
   // actuator state
@@ -33,7 +36,8 @@ struct TracerActuatorState {
   ActuatorLSStateMessage actuator_ls_state[2];
 };
 
-struct TracerInterface {
+struct TracerInterface
+{
   virtual ~TracerInterface() = default;
 
   virtual void Connect(std::string uart_name, uint32_t baudrate){

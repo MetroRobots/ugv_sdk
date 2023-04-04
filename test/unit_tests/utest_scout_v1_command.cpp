@@ -18,12 +18,14 @@
 
 using namespace westonrobot;
 
-struct ScoutV1CommandTest : testing::Test {
+struct ScoutV1CommandTest : testing::Test
+{
   struct can_frame frame;
   ScoutProtocolV1Parser parser;
 };
 
-TEST_F(ScoutV1CommandTest, MotionLinearCommandTest) {
+TEST_F(ScoutV1CommandTest, MotionLinearCommandTest)
+{
   AgxMessage msg;
 
   msg.type = AgxMsgMotionCommandV1;
@@ -37,12 +39,14 @@ TEST_F(ScoutV1CommandTest, MotionLinearCommandTest) {
   ASSERT_EQ(frame.can_id, CAN_MSG_MOTION_COMMAND_ID);
   ASSERT_EQ(frame.can_dlc, 8);
 
-  for (int i = 0; i < 8; ++i) {
+  for (int i = 0; i < 8; ++i)
+  {
     ASSERT_EQ(frame.data[i], expected_data[i]);
   }
 }
 
-TEST_F(ScoutV1CommandTest, MotionAngularCommandTest) {
+TEST_F(ScoutV1CommandTest, MotionAngularCommandTest)
+{
   AgxMessage msg;
 
   msg.type = AgxMsgMotionCommandV1;
@@ -56,12 +60,14 @@ TEST_F(ScoutV1CommandTest, MotionAngularCommandTest) {
   ASSERT_EQ(frame.can_id, CAN_MSG_MOTION_COMMAND_ID);
   ASSERT_EQ(frame.can_dlc, 8);
 
-  for (int i = 0; i < 8; ++i) {
+  for (int i = 0; i < 8; ++i)
+  {
     ASSERT_EQ(frame.data[i], expected_data[i]);
   }
 }
 
-TEST_F(ScoutV1CommandTest, LightCommandTest) {
+TEST_F(ScoutV1CommandTest, LightCommandTest)
+{
   AgxMessage msg;
 
   msg.type = AgxMsgLightCommand;
@@ -78,7 +84,8 @@ TEST_F(ScoutV1CommandTest, LightCommandTest) {
   ASSERT_EQ(frame.can_id, CAN_MSG_LIGHT_COMMAND_ID);
   ASSERT_EQ(frame.can_dlc, 8);
 
-  for (int i = 0; i < 8; ++i) {
+  for (int i = 0; i < 8; ++i)
+  {
     // printf("expecting: %x, getting: %x\n", expected_data[i], frame.data[i]);
     ASSERT_EQ(frame.data[i], expected_data[i]);
   }

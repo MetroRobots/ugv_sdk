@@ -15,8 +15,10 @@
 #include "ugv_sdk/details/interface/agilex_message.h"
 #include "ugv_sdk/details/interface/robot_common_interface.hpp"
 
-namespace westonrobot {
-struct HunterCoreState {
+namespace westonrobot
+{
+struct HunterCoreState
+{
   AgxMsgTimeStamp time_stamp;
 
   SystemStateMessage system_state;
@@ -24,7 +26,8 @@ struct HunterCoreState {
   RcStateMessage rc_state;
 };
 
-struct HunterActuatorState {
+struct HunterActuatorState
+{
   AgxMsgTimeStamp time_stamp;
 
   // actuator state
@@ -34,7 +37,8 @@ struct HunterActuatorState {
   ActuatorStateMessageV1 actuator_state[3];
 };
 
-struct HunterInterface {
+struct HunterInterface
+{
   virtual ~HunterInterface() = default;
 
   virtual void SetMotionCommand(double linear_vel, double steering_angle) = 0;

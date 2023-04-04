@@ -16,23 +16,15 @@ extern "C" {
 
 #include <stdint.h>
 
-typedef enum {
-  CONST_OFF = 0x00,
-  CONST_ON = 0x01,
-  BREATH = 0x02,
-  CUSTOM = 0x03
-} LightMode;
+typedef enum { CONST_OFF = 0x00, CONST_ON = 0x01, BREATH = 0x02, CUSTOM = 0x03 } LightMode;
 
-typedef struct {
+typedef struct
+{
   LightMode mode;
   uint8_t custom_value;
 } LightOperation;
 
-typedef enum {
-  VehicleStateNormal = 0x00,
-  VehicleStateEStop = 0x01,
-  VehicleStateException = 0x02
-} VehicleState;
+typedef enum { VehicleStateNormal = 0x00, VehicleStateEStop = 0x01, VehicleStateException = 0x02 } VehicleState;
 
 typedef enum {
   //   CONTROL_MODE_STANDBY = 0x00,
@@ -47,11 +39,7 @@ typedef enum {
   BRAKE_MODE_LOCK = 0x01
 } BrakeMode;
 
-typedef enum {
-  RC_SWITCH_UP = 0,
-  RC_SWITCH_MIDDLE,
-  RC_SWITCH_DOWN
-} RcSwitchState;
+typedef enum { RC_SWITCH_UP = 0, RC_SWITCH_MIDDLE, RC_SWITCH_DOWN } RcSwitchState;
 
 #ifdef __cplusplus
 }

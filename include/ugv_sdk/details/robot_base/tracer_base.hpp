@@ -20,35 +20,39 @@
 
 #include "ugv_sdk/details/protocol_v2/protocol_v2_parser.hpp"
 
-namespace westonrobot {
-class TracerBaseV2 : public AgilexBase<ProtocolV2Parser>,
-                     public TracerInterface {
- public:
+namespace westonrobot
+{
+class TracerBaseV2 : public AgilexBase<ProtocolV2Parser>, public TracerInterface
+{
+public:
   TracerBaseV2() : AgilexBase<ProtocolV2Parser>(){};
   ~TracerBaseV2() = default;
 
   // set up connection
-  void Connect(std::string can_name) override {
+  void Connect(std::string can_name) override
+  {
     AgilexBase<ProtocolV2Parser>::Connect(can_name);
   }
 
-  void Connect(std::string uart_name, uint32_t baudrate) override {
+  void Connect(std::string uart_name, uint32_t baudrate) override
+  {
     // TODO
   }
 
   // robot control
-  void SetMotionCommand(double linear_vel, double angular_vel) override {
-    AgilexBase<ProtocolV2Parser>::SendMotionCommand(linear_vel, angular_vel,
-                                                    0.0, 0.0);
+  void SetMotionCommand(double linear_vel, double angular_vel) override
+  {
+    AgilexBase<ProtocolV2Parser>::SendMotionCommand(linear_vel, angular_vel, 0.0, 0.0);
   }
 
-  void SetLightCommand(LightMode f_mode, uint8_t f_value) override {
-    AgilexBase<ProtocolV2Parser>::SendLightCommand(f_mode, f_value, CONST_OFF,
-                                                   0);
+  void SetLightCommand(LightMode f_mode, uint8_t f_value) override
+  {
+    AgilexBase<ProtocolV2Parser>::SendLightCommand(f_mode, f_value, CONST_OFF, 0);
   }
 
   // get robot state
-  TracerCoreState GetRobotState() override {
+  TracerCoreState GetRobotState() override
+  {
     auto state = AgilexBase<ProtocolV2Parser>::GetRobotCoreStateMsgGroup();
 
     TracerCoreState tracer_state;
@@ -60,19 +64,22 @@ class TracerBaseV2 : public AgilexBase<ProtocolV2Parser>,
     return tracer_state;
   }
 
-  TracerActuatorState GetActuatorState() override {
+  TracerActuatorState GetActuatorState() override
+  {
     auto actuator = AgilexBase<ProtocolV2Parser>::GetActuatorStateMsgGroup();
 
     TracerActuatorState tracer_actuator;
     tracer_actuator.time_stamp = actuator.time_stamp;
-    for (int i = 0; i < 2; ++i) {
+    for (int i = 0; i < 2; ++i)
+    {
       tracer_actuator.actuator_hs_state[i] = actuator.actuator_hs_state[i];
       tracer_actuator.actuator_ls_state[i] = actuator.actuator_ls_state[i];
     }
     return tracer_actuator;
   }
 
-  void ResetRobotState() override {
+  void ResetRobotState() override
+  {
     // TODO
   }
 };

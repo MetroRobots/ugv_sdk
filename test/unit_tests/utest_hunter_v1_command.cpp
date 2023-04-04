@@ -18,12 +18,14 @@
 
 using namespace westonrobot;
 
-struct HunterV1CommandTest : testing::Test {
+struct HunterV1CommandTest : testing::Test
+{
   struct can_frame frame;
   HunterProtocolV1Parser parser;
 };
 
-TEST_F(HunterV1CommandTest, MotionLinearCommandTest) {
+TEST_F(HunterV1CommandTest, MotionLinearCommandTest)
+{
   AgxMessage msg;
 
   msg.type = AgxMsgMotionCommandV1;
@@ -37,13 +39,15 @@ TEST_F(HunterV1CommandTest, MotionLinearCommandTest) {
   ASSERT_EQ(frame.can_id, CAN_MSG_MOTION_COMMAND_ID);
   ASSERT_EQ(frame.can_dlc, 8);
 
-  for (int i = 0; i < 6; ++i) {
+  for (int i = 0; i < 6; ++i)
+  {
     // printf("expecting: %x, getting: %x\n", expected_data[i], frame.data[i]);
     ASSERT_EQ(frame.data[i], expected_data[i]);
   }
 }
 
-TEST_F(HunterV1CommandTest, MotionAngularCommandTest) {
+TEST_F(HunterV1CommandTest, MotionAngularCommandTest)
+{
   AgxMessage msg;
 
   msg.type = AgxMsgMotionCommandV1;
@@ -57,13 +61,15 @@ TEST_F(HunterV1CommandTest, MotionAngularCommandTest) {
   ASSERT_EQ(frame.can_id, CAN_MSG_MOTION_COMMAND_ID);
   ASSERT_EQ(frame.can_dlc, 8);
 
-  for (int i = 0; i < 6; ++i) {
+  for (int i = 0; i < 6; ++i)
+  {
     // printf("expecting: %x, getting: %x\n", expected_data[i], frame.data[i]);
     ASSERT_EQ(frame.data[i], expected_data[i]);
   }
 }
 
-TEST_F(HunterV1CommandTest, ValueSetCommandTest) {
+TEST_F(HunterV1CommandTest, ValueSetCommandTest)
+{
   AgxMessage msg;
 
   msg.type = AgxMsgValueSetCommandV1;
@@ -76,13 +82,15 @@ TEST_F(HunterV1CommandTest, ValueSetCommandTest) {
   ASSERT_EQ(frame.can_id, CAN_MSG_VALUE_SET_COMMAND_ID);
   ASSERT_EQ(frame.can_dlc, 8);
 
-  for (int i = 0; i < 6; ++i) {
+  for (int i = 0; i < 6; ++i)
+  {
     // printf("expecting: %x, getting: %x\n", expected_data[i], frame.data[i]);
     ASSERT_EQ(frame.data[i], expected_data[i]);
   }
 }
 
-TEST_F(HunterV1CommandTest, LightCommandTest) {
+TEST_F(HunterV1CommandTest, LightCommandTest)
+{
   AgxMessage msg;
 
   msg.type = AgxMsgLightCommand;
@@ -99,7 +107,8 @@ TEST_F(HunterV1CommandTest, LightCommandTest) {
   ASSERT_EQ(frame.can_id, CAN_MSG_LIGHT_COMMAND_ID);
   ASSERT_EQ(frame.can_dlc, 8);
 
-  for (int i = 0; i < 6; ++i) {
+  for (int i = 0; i < 6; ++i)
+  {
     // printf("expecting: %x, getting: %x\n", expected_data[i], frame.data[i]);
     ASSERT_EQ(frame.data[i], expected_data[i]);
   }

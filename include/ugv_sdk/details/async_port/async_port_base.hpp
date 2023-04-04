@@ -17,32 +17,42 @@
 
 #include "asio.hpp"
 
-namespace westonrobot {
-class AsyncPortBase {
- public:
-  AsyncPortBase(std::string port) : port_(port) {}
+namespace westonrobot
+{
+class AsyncPortBase
+{
+public:
+  AsyncPortBase(std::string port) : port_(port)
+  {
+  }
   virtual ~AsyncPortBase(){};
 
   // do not allow copy
   AsyncPortBase() = delete;
   AsyncPortBase(const AsyncPortBase& other) = delete;
 
-  virtual bool IsOpened() const { return port_opened_; }
+  virtual bool IsOpened() const
+  {
+    return port_opened_;
+  }
 
-  bool StartListening() {
-    if (SetupPort()) {
+  bool StartListening()
+  {
+    if (SetupPort())
+    {
       io_thread_ = std::thread([this]() { io_context_.run(); });
       return true;
     }
-    std::cerr
-        << "[ERROR] Failed to setup port, please check if specified port exits "
-           "or if you have proper permissions to access it"
-        << std::endl;
+    std::cerr << "[ERROR] Failed to setup port, please check if specified port exits "
+                 "or if you have proper permissions to access it"
+              << std::endl;
     return false;
   };
-  virtual void StopService() {}
+  virtual void StopService()
+  {
+  }
 
- protected:
+protected:
   std::string port_;
   bool port_opened_ = false;
 

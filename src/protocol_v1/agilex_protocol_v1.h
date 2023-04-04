@@ -58,22 +58,26 @@ extern "C" {
 #pragma pack(push, 1)
 
 #ifdef USE_LITTLE_ENDIAN
-typedef struct {
+typedef struct
+{
   uint8_t high_byte;
   uint8_t low_byte;
 } struct16_t;
-typedef struct {
+typedef struct
+{
   uint8_t msb;
   uint8_t high_byte;
   uint8_t low_byte;
   uint8_t lsb;
 } struct32_t;
 #elif defined(USE_BIG_ENDIAN)
-typedef struct {
+typedef struct
+{
   uint8_t low_byte;
   uint8_t high_byte;
 } struct16_t;
-typedef struct {
+typedef struct
+{
   uint8_t lsb;
   uint8_t low_byte;
   uint8_t high_byte;
@@ -97,7 +101,8 @@ typedef struct {
 #define ERROR_CLR_MOTOR_DRV_OVERHEAT ((uint8_t)0x07)
 #define ERROR_CLR_MOTOR_OVERCURRENT ((uint8_t)0x08)
 
-typedef struct {
+typedef struct
+{
   uint8_t control_mode;
   uint8_t error_clear_byte;
   int8_t linear_percentage;
@@ -116,7 +121,8 @@ typedef struct {
 #define LIGHT_MODE_BREATH ((uint8_t)0x02)
 #define LIGHT_MODE_CUSTOM ((uint8_t)0x03)
 
-typedef struct {
+typedef struct
+{
   uint8_t enable_cmd_ctrl;
   uint8_t front_mode;
   uint8_t front_custom;
@@ -127,7 +133,8 @@ typedef struct {
   uint8_t checksum;
 } LightCommandFrame;
 
-typedef struct {
+typedef struct
+{
   uint8_t set_neutral;
   uint8_t reserved0;
   uint8_t reserved1;
@@ -161,7 +168,8 @@ typedef struct {
 #define ERROR_MOTOR_DRV_OVERHEAT_F ((uint16_t)0x0040)
 #define ERROR_MOTOR_OVERCURRENT_F ((uint16_t)0x0080)
 
-typedef struct {
+typedef struct
+{
   uint8_t vehicle_state;
   uint8_t control_mode;
   struct16_t battery_voltage;
@@ -170,7 +178,8 @@ typedef struct {
   uint8_t checksum;
 } SystemStateFrame;
 
-typedef struct {
+typedef struct
+{
   struct16_t linear;
   struct16_t angular;
   uint8_t reserved0;
@@ -181,7 +190,8 @@ typedef struct {
 
 typedef LightCommandFrame LightStateFrame;
 
-typedef struct {
+typedef struct
+{
   struct16_t current;
   struct16_t rpm;
   int8_t temperature;

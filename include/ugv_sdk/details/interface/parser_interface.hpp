@@ -17,7 +17,8 @@
 #ifdef __linux__
 #include <linux/can.h>
 #else
-struct can_frame {
+struct can_frame
+{
   uint32_t can_id;
   uint8_t can_dlc;
   uint8_t data[8] __attribute__((aligned(8)));
@@ -29,32 +30,35 @@ struct can_frame {
 enum class ProtocolVersion { UNKNOWN, AGX_V1, AGX_V2 };
 
 template <ProtocolVersion VersionNumber = ProtocolVersion::AGX_V2>
-class ParserInterface {
- public:
+class ParserInterface
+{
+public:
   virtual ~ParserInterface() = default;
 
   // CAN support
-  virtual bool DecodeMessage(const struct can_frame *rx_frame,
-                             AgxMessage *msg) = 0;
-  virtual bool EncodeMessage(const AgxMessage *msg,
-                             struct can_frame *tx_frame) = 0;
-  virtual uint8_t CalculateChecksum(uint16_t id, uint8_t *data,
-                                    uint8_t dlc) = 0;
+  virtual bool DecodeMessage(const struct can_frame* rx_frame, AgxMessage* msg) = 0;
+  virtual bool EncodeMessage(const AgxMessage* msg, struct can_frame* tx_frame) = 0;
+  virtual uint8_t CalculateChecksum(uint16_t id, uint8_t* data, uint8_t dlc) = 0;
 
   // UART support
-  virtual bool DecodeMessage(uint8_t *data, uint8_t dlc, AgxMessage *msg) {
+  virtual bool DecodeMessage(uint8_t* data, uint8_t dlc, AgxMessage* msg)
+  {
     // throw exception
     return false;
   };
-  virtual void EncodeMessage(const AgxMessage *msg, uint8_t *buf, uint8_t *len){
+  virtual void EncodeMessage(const AgxMessage* msg, uint8_t* buf, uint8_t* len){
       // throw exception
   };
-  virtual uint8_t CalculateChecksum(uint8_t *buf, uint8_t len) {
+  virtual uint8_t CalculateChecksum(uint8_t* buf, uint8_t len)
+  {
     // throw exception
     return 0;
   };
 
-  ProtocolVersion GetParserProtocolVersion() { return VersionNumber; }
+  ProtocolVersion GetParserProtocolVersion()
+  {
+    return VersionNumber;
+  }
 };
 
 #endif /* PASER_INTERFACE_HPP */

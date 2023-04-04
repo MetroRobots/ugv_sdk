@@ -18,26 +18,30 @@
 #include "ugv_sdk/details/interface/hunter_interface.hpp"
 #include "ugv_sdk/details/robot_base/agilex_base.hpp"
 
-namespace westonrobot {
+namespace westonrobot
+{
 template <typename ParserType>
-class HunterBase : public AgilexBase<ParserType>, public HunterInterface {
- public:
+class HunterBase : public AgilexBase<ParserType>, public HunterInterface
+{
+public:
   HunterBase() : AgilexBase<ParserType>(){};
   ~HunterBase() = default;
 
   // set up connection
-  void Connect(std::string can_name) override {
+  void Connect(std::string can_name) override
+  {
     AgilexBase<ParserType>::Connect(can_name);
   }
 
   // robot control
-  void SetMotionCommand(double linear_vel, double angular_vel) override {
-    AgilexBase<ParserType>::SendMotionCommand(linear_vel, 0.0, 0.0,
-                                              angular_vel);
+  void SetMotionCommand(double linear_vel, double angular_vel) override
+  {
+    AgilexBase<ParserType>::SendMotionCommand(linear_vel, 0.0, 0.0, angular_vel);
   }
 
   // get robot state
-  HunterCoreState GetRobotState() override {
+  HunterCoreState GetRobotState() override
+  {
     auto state = AgilexBase<ParserType>::GetRobotCoreStateMsgGroup();
 
     HunterCoreState hunter_state;
@@ -48,12 +52,14 @@ class HunterBase : public AgilexBase<ParserType>, public HunterInterface {
     return hunter_state;
   }
 
-  HunterActuatorState GetActuatorState() override {
+  HunterActuatorState GetActuatorState() override
+  {
     auto actuator = AgilexBase<ParserType>::GetActuatorStateMsgGroup();
 
     HunterActuatorState hunter_actuator;
     hunter_actuator.time_stamp = actuator.time_stamp;
-    for (int i = 0; i < 3; ++i) {
+    for (int i = 0; i < 3; ++i)
+    {
       hunter_actuator.actuator_hs_state[i] = actuator.actuator_hs_state[i];
       hunter_actuator.actuator_ls_state[i] = actuator.actuator_ls_state[i];
       hunter_actuator.actuator_state[i] = actuator.actuator_state[i];
@@ -61,11 +67,13 @@ class HunterBase : public AgilexBase<ParserType>, public HunterInterface {
     return hunter_actuator;
   }
 
-  void ActivateBrake() override {
+  void ActivateBrake() override
+  {
     AgilexBase<ParserType>::SetBrakeMode(BrakeMode::BRAKE_MODE_LOCK);
   }
 
-  void ReleaseBrake() override {
+  void ReleaseBrake() override
+  {
     AgilexBase<ParserType>::SetBrakeMode(BrakeMode::BRAKE_MODE_UNLOCK);
   }
 };
@@ -74,7 +82,8 @@ class HunterBase : public AgilexBase<ParserType>, public HunterInterface {
 #include "ugv_sdk/details/protocol_v1/protocol_v1_parser.hpp"
 #include "ugv_sdk/details/protocol_v2/protocol_v2_parser.hpp"
 
-namespace westonrobot {
+namespace westonrobot
+{
 using HunterBaseV1 = HunterBase<HunterProtocolV1Parser>;
 using HunterBaseV2 = HunterBase<ProtocolV2Parser>;
 }  // namespace westonrobot

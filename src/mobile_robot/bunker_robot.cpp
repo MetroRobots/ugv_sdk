@@ -10,40 +10,60 @@
 #include "ugv_sdk/mobile_robot/bunker_robot.hpp"
 #include "ugv_sdk/details/robot_base/bunker_base.hpp"
 
-namespace westonrobot {
-BunkerRobot::BunkerRobot(ProtocolVersion protocol) {
-  if (protocol == ProtocolVersion::AGX_V1) {
+namespace westonrobot
+{
+BunkerRobot::BunkerRobot(ProtocolVersion protocol)
+{
+  if (protocol == ProtocolVersion::AGX_V1)
+  {
     robot_ = new BunkerBaseV1();
-  } else if (protocol == ProtocolVersion::AGX_V2) {
+  }
+  else if (protocol == ProtocolVersion::AGX_V2)
+  {
     robot_ = new BunkerBaseV2();
   }
 }
 
-BunkerRobot::~BunkerRobot() {
-  if (robot_) delete robot_;
+BunkerRobot::~BunkerRobot()
+{
+  if (robot_)
+    delete robot_;
 }
 
-void BunkerRobot::EnableCommandedMode() { robot_->EnableCommandedMode(); }
+void BunkerRobot::EnableCommandedMode()
+{
+  robot_->EnableCommandedMode();
+}
 
-void BunkerRobot::Connect(std::string can_name) { robot_->Connect(can_name); }
+void BunkerRobot::Connect(std::string can_name)
+{
+  robot_->Connect(can_name);
+}
 
-void BunkerRobot::ResetRobotState() { robot_->ResetRobotState(); }
+void BunkerRobot::ResetRobotState()
+{
+  robot_->ResetRobotState();
+}
 
-ProtocolVersion BunkerRobot::GetParserProtocolVersion() {
+ProtocolVersion BunkerRobot::GetParserProtocolVersion()
+{
   return robot_->GetParserProtocolVersion();
 }
 
-void BunkerRobot::SetMotionCommand(double linear_vel, double angular_vel) {
+void BunkerRobot::SetMotionCommand(double linear_vel, double angular_vel)
+{
   auto bunker = dynamic_cast<BunkerInterface*>(robot_);
   bunker->SetMotionCommand(linear_vel, angular_vel);
 }
 
-BunkerCoreState BunkerRobot::GetRobotState() {
+BunkerCoreState BunkerRobot::GetRobotState()
+{
   auto bunker = dynamic_cast<BunkerInterface*>(robot_);
   return bunker->GetRobotState();
 }
 
-BunkerActuatorState BunkerRobot::GetActuatorState() {
+BunkerActuatorState BunkerRobot::GetActuatorState()
+{
   auto bunker = dynamic_cast<BunkerInterface*>(robot_);
   return bunker->GetActuatorState();
 }

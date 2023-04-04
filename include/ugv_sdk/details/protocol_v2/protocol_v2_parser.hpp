@@ -12,14 +12,14 @@
 
 #include "ugv_sdk/details/interface/parser_interface.hpp"
 
-namespace westonrobot {
-class ProtocolV2Parser : public ParserInterface<ProtocolVersion::AGX_V2> {
- public:
-  bool DecodeMessage(const struct can_frame *rx_frame,
-                     AgxMessage *msg) override;
-  bool EncodeMessage(const AgxMessage *msg,
-                     struct can_frame *tx_frame) override;
-  uint8_t CalculateChecksum(uint16_t id, uint8_t *data, uint8_t dlc) override;
+namespace westonrobot
+{
+class ProtocolV2Parser : public ParserInterface<ProtocolVersion::AGX_V2>
+{
+public:
+  bool DecodeMessage(const struct can_frame* rx_frame, AgxMessage* msg) override;
+  bool EncodeMessage(const AgxMessage* msg, struct can_frame* tx_frame) override;
+  uint8_t CalculateChecksum(uint16_t id, uint8_t* data, uint8_t dlc) override;
 };
 }  // namespace westonrobot
 

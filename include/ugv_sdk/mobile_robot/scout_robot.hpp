@@ -15,11 +15,12 @@
 #include "ugv_sdk/details/interface/robot_common_interface.hpp"
 #include "ugv_sdk/details/interface/scout_interface.hpp"
 
-namespace westonrobot {
-class ScoutRobot : public RobotCommonInterface, public ScoutInterface {
- public:
-  ScoutRobot(ProtocolVersion protocol = ProtocolVersion::AGX_V2,
-             bool is_mini_model = false);
+namespace westonrobot
+{
+class ScoutRobot : public RobotCommonInterface, public ScoutInterface
+{
+public:
+  ScoutRobot(ProtocolVersion protocol = ProtocolVersion::AGX_V2, bool is_mini_model = false);
   virtual ~ScoutRobot();
 
   void Connect(std::string can_name) override;
@@ -27,11 +28,10 @@ class ScoutRobot : public RobotCommonInterface, public ScoutInterface {
 
   void EnableCommandedMode() override;
   std::string sendRequest() override;
-//  std::string checkVersionRequest() override;
+  //  std::string checkVersionRequest() override;
 
   void SetMotionCommand(double linear_vel, double angular_vel) override;
-  void SetLightCommand(LightMode f_mode, uint8_t f_value, LightMode r_mode,
-                       uint8_t r_value) override;
+  void SetLightCommand(LightMode f_mode, uint8_t f_value, LightMode r_mode, uint8_t r_value) override;
   void DisableLightControl() override;
 
   void ResetRobotState() override;
@@ -43,21 +43,21 @@ class ScoutRobot : public RobotCommonInterface, public ScoutInterface {
   ScoutActuatorState GetActuatorState() override;
   ScoutCommonSensorState GetCommonSensorState() override;
 
- protected:
+protected:
   RobotCommonInterface* robot_;
 };
 
 ///////////////////////////////////////////////////////////////////////////
 
-class ScoutMiniOmniRobot : public ScoutRobot, public ScoutOmniInterface {
- public:
+class ScoutMiniOmniRobot : public ScoutRobot, public ScoutOmniInterface
+{
+public:
   ScoutMiniOmniRobot(ProtocolVersion protocol = ProtocolVersion::AGX_V2);
   ~ScoutMiniOmniRobot();
 
-  void SetMotionCommand(double linear_vel, double angular_vel,
-                        double lateral_velocity) override;
+  void SetMotionCommand(double linear_vel, double angular_vel, double lateral_velocity) override;
 
- private:
+private:
   using ScoutRobot::SetMotionCommand;
 };
 }  // namespace westonrobot
