@@ -5,7 +5,7 @@
  * Description:
  *
  * Note: CAN TX is not buffered and only the latest frame will be transmitted.
- *  Buffered transmission will need to be added if a message has to be divided 
+ *  Buffered transmission will need to be added if a message has to be divided
  *  into multiple frames and in applications where no frame should be dropped.
  *
  * Copyright (c) 2020 Weston Robot Pte. Ltd.

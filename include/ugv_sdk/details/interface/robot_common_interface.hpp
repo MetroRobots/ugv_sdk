@@ -105,7 +105,7 @@ class RobotCommonInterface {
     throw std::runtime_error(
         "Only a derived version of this function with actual implementation "
         "is supposed to be used.");
-    return ResponseVersionMsgGroup{};   
+    return ResponseVersionMsgGroup{};
   };
   virtual MotorMsgGroup GetMotorMsgGroup() {
     throw std::runtime_error(

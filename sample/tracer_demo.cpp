@@ -46,7 +46,7 @@ int main(int argc, char **argv) {
   tracer.SetLightCommand({CUSTOM, 90});
   //   usleep(50000);
   sleep(3);
-  std::cout << "Light: diabled cmd control" << std::endl;
+  std::cout << "Light: disabled cmd control" << std::endl;
   tracer.SetLightCommand(TracerLightCmd());
 
   int count = 0;

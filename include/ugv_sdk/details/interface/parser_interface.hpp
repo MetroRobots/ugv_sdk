@@ -26,7 +26,7 @@ struct can_frame {
 
 #include "ugv_sdk/details/interface/agilex_message.h"
 
-enum class ProtocolVersion { UNKONWN, AGX_V1, AGX_V2 };
+enum class ProtocolVersion { UNKNOWN, AGX_V1, AGX_V2 };
 
 template <ProtocolVersion VersionNumber = ProtocolVersion::AGX_V2>
 class ParserInterface {

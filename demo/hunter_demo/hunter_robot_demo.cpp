@@ -42,7 +42,7 @@ int main(int argc, char **argv) {
     hunter =
         std::unique_ptr<HunterRobot>(new HunterRobot(ProtocolVersion::AGX_V2));
   } else {
-    std::cout << "Detected protocol: UNKONWN" << std::endl;
+    std::cout << "Detected protocol: UNKNOWN" << std::endl;
     return -1;
   }
 

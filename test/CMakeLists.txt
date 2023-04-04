@@ -10,7 +10,7 @@ mark_as_advanced(
 )
 
 # add unit tests
-add_executable(utests 
+add_executable(utests
     unit_tests/utest_scout_v1_command.cpp
     unit_tests/utest_hunter_v1_command.cpp)
 target_link_libraries(utests PRIVATE gtest gmock gtest_main ${PROJECT_NAME})

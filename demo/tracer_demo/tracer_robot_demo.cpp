@@ -51,7 +51,7 @@ int main(int argc, char **argv) {
   std::cout << "Light: custom 30-80" << std::endl;
   tracer->SetLightCommand(CUSTOM, 30);
   sleep(3);
-  //   std::cout << "Light: diabled cmd control" << std::endl;
+  //   std::cout << "Light: disabled cmd control" << std::endl;
   //   scout->DisableLightControl();
   tracer->SetLightCommand(CONST_OFF, 0);
 

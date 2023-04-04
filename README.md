@@ -7,7 +7,7 @@
 
 This software package provides a C++ interface to communicate with the mobile platforms from Weston Robot and AgileX Robotics, for sending commands to the robot and receiving the latest robot state. The repository is a joint effort by the development teams at Weston Robot (Singapore) and AgileX Robotics (China).
 
-- Copyright (c) 2020 [Weston Robot](https://www.westonrobot.com/) 
+- Copyright (c) 2020 [Weston Robot](https://www.westonrobot.com/)
 - Copyright (c) 2020 [AgileX Robotics](http://www.agilex.ai/?lang=zh-cn)
 
 Please create an issue on Github at https://github.com/westonrobot/ugv_sdk/issues if you encounter any problems when using the packages.
@@ -43,7 +43,7 @@ It should also work in other similar Linux environments but only the above liste
 |      Tracer       |      -      |      Y      | TODO  |   Y   |     Active     |
 |    Ranger Mini    |      -      |      Y      |   -   |   Y   |     Active     |
 
-**Important Note:** Currently we're transitioning the communication protocol from version 1 to version 2. Please check with Weston Robot or AgileX Robotics to confirm which version your robot is using. 
+**Important Note:** Currently we're transitioning the communication protocol from version 1 to version 2. Please check with Weston Robot or AgileX Robotics to confirm which version your robot is using.
 
 * V1 Protocol: master branch of scout_ros and ugv_sdk
 * V2 Protocol: v2.x branch of scout_ros and ugv_sdk
@@ -72,7 +72,7 @@ $ mkdir build && cd build
 $ cmake ..
 $ make
 ```
-## Setup CAN-To-USB adapter 
+## Setup CAN-To-USB adapter
 
 1. Enable gs_usb kernel module
     ```
@@ -82,7 +82,7 @@ $ make
    ```
    $ sudo ip link set can0 up type can bitrate 500000
    ```
-3. If no error occured during the previous steps, you should be able to see the can device now by using command
+3. If no error occurred during the previous steps, you should be able to see the can device now by using command
    ```
    $ ifconfig -a
    ```

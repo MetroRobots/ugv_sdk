@@ -16,7 +16,7 @@ extern "C" {
 
 #include <stdint.h>
 
-// define endianess of the platform
+// define endianness of the platform
 #if (!defined(USE_LITTLE_ENDIAN) && !defined(USE_BIG_ENDIAN))
 #define USE_LITTLE_ENDIAN
 #endif

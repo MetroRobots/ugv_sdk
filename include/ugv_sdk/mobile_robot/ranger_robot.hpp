@@ -1,11 +1,11 @@
-/* 
+/*
  * ranger_robot.hpp
- * 
+ *
  * Created on: Jul 14, 2021 21:45
- * Description: 
- * 
+ * Description:
+ *
  * Copyright (c) 2021 Ruixiang Du (rdu)
- */ 
+ */
 
 #ifndef RANGER_ROBOT_HPP
 #define RANGER_ROBOT_HPP

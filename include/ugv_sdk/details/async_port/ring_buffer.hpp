@@ -56,7 +56,7 @@ class RingBuffer {
   // Init and reset of buffer
   RingBuffer() {
     // assert size is a power of 2
-    static_assert((N != 0) && ((N & (N - 1)) == 0), 
+    static_assert((N != 0) && ((N & (N - 1)) == 0),
         "Size of ring buffer has to be 2^n, where n is a positive integer");
 
     size_ = N;

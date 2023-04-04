@@ -43,7 +43,7 @@ int main(int argc, char **argv) {
     is_scout_mini = true;
   } else if (!robot_subtype.empty() && robot_subtype != "scout") {
     std::cout
-        << "Unkonwn robot subtype. Supported subtypes: \"scout\" or \"mini\""
+        << "Unknown robot subtype. Supported subtypes: \"scout\" or \"mini\""
         << std::endl;
   }
 
@@ -61,7 +61,7 @@ int main(int argc, char **argv) {
       scout = std::unique_ptr<ScoutRobot>(
           new ScoutRobot(ProtocolVersion::AGX_V2, is_scout_mini));
     } else {
-      std::cout << "Detected protocol: UNKONWN" << std::endl;
+      std::cout << "Detected protocol: UNKNOWN" << std::endl;
       return -1;
     }
   } else {

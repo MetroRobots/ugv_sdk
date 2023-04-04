@@ -1,11 +1,11 @@
-/* 
+/*
  * agilex_msg_parser.h
- * 
+ *
  * Created on: Dec 22, 2020 17:11
  * Description: public API to encode/decode protocol messages
- * 
+ *
  * Copyright (c) 2020 Ruixiang Du (rdu)
- */ 
+ */
 
 #ifndef AGILEX_MSG_PARSER_H
 #define AGILEX_MSG_PARSER_H

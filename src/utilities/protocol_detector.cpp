@@ -31,14 +31,14 @@ ProtocolVersion ProtocolDectctor::DetectProtocolVersion(uint32_t timeout_sec) {
   }
 
   // make sure only one version is detected
-  if (msg_v1_detected_ && msg_v2_detected_) return ProtocolVersion::UNKONWN;
+  if (msg_v1_detected_ && msg_v2_detected_) return ProtocolVersion::UNKNOWN;
 
   if (msg_v1_detected_)
     return ProtocolVersion::AGX_V1;
   else if (msg_v2_detected_)
     return ProtocolVersion::AGX_V2;
 
-  return ProtocolVersion::UNKONWN;
+  return ProtocolVersion::UNKNOWN;
 };
 
 void ProtocolDectctor::ParseCANFrame(can_frame *rx_frame) {

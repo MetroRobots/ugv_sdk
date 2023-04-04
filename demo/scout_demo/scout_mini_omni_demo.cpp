@@ -44,7 +44,7 @@ int main(int argc, char **argv) {
     scout = std::unique_ptr<ScoutMiniOmniRobot>(
         new ScoutMiniOmniRobot(ProtocolVersion::AGX_V2));
   } else {
-    std::cout << "Detected protocol: UNKONWN" << std::endl;
+    std::cout << "Detected protocol: UNKNOWN" << std::endl;
     return -1;
   }
 

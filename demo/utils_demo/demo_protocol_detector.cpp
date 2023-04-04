@@ -24,7 +24,7 @@ int main(int argc, char **argv) {
     } else if (proto == ProtocolVersion::AGX_V2) {
       std::cout << "Detected protocol: AGX_V2" << std::endl;
     } else {
-      std::cout << "Detected protocol: UNKONWN" << std::endl;
+      std::cout << "Detected protocol: UNKNOWN" << std::endl;
     }
   } else {
     std::cout << "Failed to open port" << std::endl;

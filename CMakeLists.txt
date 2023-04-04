@@ -20,7 +20,7 @@ if(CATKIN_DEVEL_PREFIX)
     find_package(catkin REQUIRED)
 else()
     message(STATUS "Build package with cmake")
-    set(BUILD_WITHOUT_ROS ON)    
+    set(BUILD_WITHOUT_ROS ON)
 endif()
 
 ## Generate symbols for IDE indexer
@@ -31,7 +31,7 @@ if(STATIC_CHECK)
     if(CPPCHECK)
         message(STATUS "Found cppcheck")
         set(CMAKE_CXX_CPPCHECK cppcheck;--std=c++11;--enable=all)
-    endif() 
+    endif()
 endif()
 
 ## Additional cmake module path
@@ -44,7 +44,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-## Chosse build type
+## Choose build type
 set(default_build_type "Release")
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
   message(STATUS "Setting build type to '${default_build_type}' as none was specified.")
@@ -108,7 +108,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     $<INSTALL_INTERFACE:include/ugv_sdk/details/asio/include>
     $<INSTALL_INTERFACE:include>
     PRIVATE src)
-    
+
 # Build demo
 if(BUILD_WITHOUT_ROS)
     add_subdirectory(demo)
@@ -142,7 +142,7 @@ if(BUILD_WITHOUT_ROS) # BUILD_WITHOUT_ROS
     endforeach()
 
     # targets to install
-    install(TARGETS ${PROJECT_NAME} 
+    install(TARGETS ${PROJECT_NAME}
         EXPORT ugv_sdkTargets
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib
@@ -152,7 +152,7 @@ if(BUILD_WITHOUT_ROS) # BUILD_WITHOUT_ROS
     install(DIRECTORY include/ugv_sdk
         DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
-    # export target configuration 
+    # export target configuration
     include(CMakePackageConfigHelpers)
     write_basic_package_version_file(
         ugv_sdkConfigVersion.cmake
@@ -181,7 +181,7 @@ if(BUILD_WITHOUT_ROS) # BUILD_WITHOUT_ROS
 
     set(CPACK_GENERATOR "DEB")
     set(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
-    set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Ruixiang Du (ruixiang.du@westonrobot.com)") 
+    set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Ruixiang Du (ruixiang.du@westonrobot.com)")
     set(CPACK_DEBIAN_PACKAGE_DEPENDS "libasio-dev")
     set(CPACK_SOURCE_IGNORE_FILES .git dist .*build.* /\\\\.DS_Store)
     include(CPack)
@@ -190,7 +190,7 @@ else() # BUILD_WITHOUT_ROS
 
     catkin_package(
         LIBRARIES ${PROJECT_NAME}
-        INCLUDE_DIRS include 
+        INCLUDE_DIRS include
         # CATKIN_DEPENDS async_port
         # DEPENDS system_lib
     )
